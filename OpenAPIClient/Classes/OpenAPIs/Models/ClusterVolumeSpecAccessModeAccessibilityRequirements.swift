@@ -12,13 +12,12 @@ import AnyCodable
 
 /** Requirements for the accessible topology of the volume. These fields are optional. For an in-depth description of what these fields mean, see the CSI specification.  */
 public struct ClusterVolumeSpecAccessModeAccessibilityRequirements: Codable, JSONEncodable, Hashable {
-
     /** A list of required topologies, at least one of which the volume must be accessible from.  */
-    public var requisite: [Dictionary]?
+    public var requisite: [[String: String]]?
     /** A list of topologies that the volume should attempt to be provisioned in.  */
-    public var preferred: [Dictionary]?
+    public var preferred: [[String: String]]?
 
-    public init(requisite: [Dictionary]? = nil, preferred: [Dictionary]? = nil) {
+    public init(requisite: [[String: String]]? = nil, preferred: [[String: String]]? = nil) {
         self.requisite = requisite
         self.preferred = preferred
     }
@@ -36,4 +35,3 @@ public struct ClusterVolumeSpecAccessModeAccessibilityRequirements: Codable, JSO
         try container.encodeIfPresent(preferred, forKey: .preferred)
     }
 }
-

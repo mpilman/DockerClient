@@ -12,7 +12,6 @@ import AnyCodable
 
 /** Information about an image in the local image cache.  */
 public struct ImageInspect: Codable, JSONEncodable, Hashable {
-
     /** ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image's configuration (which includes the digests of layers used by the image).  Note that this digest differs from the `RepoDigests` below, which holds digests of image manifests that reference the image.  */
     public var id: String?
     /** List of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \"untagged\", in which case it can still be referenced by its ID.  */
@@ -105,7 +104,7 @@ public struct ImageInspect: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(parent, forKey: .parent)
         try container.encodeIfPresent(comment, forKey: .comment)
         try container.encodeIfPresent(created, forKey: .created)
-        try container.encodeIfPresent(container, forKey: .container)
+        try container.encodeIfPresent(self.container, forKey: .container)
         try container.encodeIfPresent(containerConfig, forKey: .containerConfig)
         try container.encodeIfPresent(dockerVersion, forKey: .dockerVersion)
         try container.encodeIfPresent(author, forKey: .author)
@@ -121,4 +120,3 @@ public struct ImageInspect: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(metadata, forKey: .metadata)
     }
 }
-

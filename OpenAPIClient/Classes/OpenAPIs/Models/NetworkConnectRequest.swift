@@ -11,7 +11,6 @@ import AnyCodable
 #endif
 
 public struct NetworkConnectRequest: Codable, JSONEncodable, Hashable {
-
     /** The ID or name of the container to connect to the network. */
     public var container: String?
     public var endpointConfig: EndpointSettings?
@@ -30,8 +29,7 @@ public struct NetworkConnectRequest: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(container, forKey: .container)
+        try container.encodeIfPresent(self.container, forKey: .container)
         try container.encodeIfPresent(endpointConfig, forKey: .endpointConfig)
     }
 }
-
