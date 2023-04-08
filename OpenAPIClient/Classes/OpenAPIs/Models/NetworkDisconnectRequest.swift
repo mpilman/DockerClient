@@ -31,7 +31,7 @@ public struct NetworkDisconnectRequest: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(container, forKey: .container)
+        try container.encodeIfPresent(self.container, forKey: .container)
         try container.encodeIfPresent(force, forKey: .force)
     }
 }
